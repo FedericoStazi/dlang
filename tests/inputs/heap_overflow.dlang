@@ -1,0 +1,7 @@
+let
+  x = ref (0, 0)
+in
+  while true do
+    x := (0, 0)
+  end
+end

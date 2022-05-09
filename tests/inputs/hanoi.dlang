@@ -1,0 +1,56 @@
+let hanoi n =
+  fun a ->
+    fun b ->
+      fun c ->
+        if (a = ()) && (b = ()) then true
+        else if n = 0 then false
+        else if (if ~(a = ())
+                 then (if (if b = () then true else ((fst a) < (fst b)) end)
+                       then (hanoi (n-1) (snd a) (fst a, b) c)
+                       else false end)
+                 else false end)
+             then true
+        else if (if ~(a = ())
+                 then (if (if c = () then true else ((fst a) < (fst c)) end)
+                       then (hanoi (n-1) (snd a) b (fst a, c))
+                       else false end)
+                 else false end)
+             then true
+        else if (if ~(b = ())
+                 then (if (if a = () then true else ((fst b) < (fst a)) end)
+                       then (hanoi (n-1) (fst b, a) (snd b) c)
+                       else false end)
+                 else false end)
+             then true
+        else if (if ~(b = ())
+                 then (if (if c = () then true else ((fst b) < (fst c)) end)
+                       then (hanoi (n-1) a (snd b) (fst b, c))
+                       else false end)
+                 else false end)
+             then true
+        else if (if ~(c = ())
+                 then (if (if a = () then true else ((fst c) < (fst a)) end)
+                       then (hanoi (n-1) (fst c, a) b (snd c))
+                       else false end)
+                 else false end)
+             then true
+        else if (if ~(c = ())
+                 then (if (if b = () then true else ((fst c) < (fst b)) end)
+                       then (hanoi (n-1) a (fst c, b) (snd c))
+                       else false end)
+                 else false end)
+             then true
+        else false end end end end end end end end
+      end
+    end
+  end
+in
+
+let solve n =
+  if (hanoi n (1, (2, (3, (4, ())))) () ()) then n else solve (n+1) end
+in
+
+solve 0
+
+end
+end

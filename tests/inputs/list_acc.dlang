@@ -1,0 +1,28 @@
+(* Basic list functions *)
+let empty = () in
+let head l = fst l in
+let tail l = snd l in
+let cons x = fun l -> (x, l) end in
+
+let acc f =
+  fun k ->
+    fun l ->
+      if l = ()
+        then k
+        else acc f (f (fst l) k) (snd l)
+      end
+    end
+  end
+in
+
+let l =
+  cons 1 (cons 2 (cons 3 empty))
+in
+  acc (fun x -> fun y -> x + y end end) 0 l
+end
+
+end
+end
+end
+end
+end

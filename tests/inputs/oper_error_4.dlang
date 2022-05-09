@@ -1,0 +1,4 @@
+let test x = (x < 1)
+in
+  (test 1) - 1
+end

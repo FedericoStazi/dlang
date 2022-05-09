@@ -1,0 +1,59 @@
+let r = ref 0 in
+
+let gen n =
+  begin
+    r := (!r + 123);
+    if !r < 1000 then () else r := (!r - 1000) end;
+    if n = 0 then () else (!r, gen (n - 1)) end
+  end
+in
+
+let append a =
+  fun b ->
+    if a = () then b
+    else (fst a, append (snd a)  b)
+    end
+  end
+in
+
+let partition x =
+  fun l ->
+    if l = () then ((), ()) else
+      let ab = partition x (snd l) in
+        let a = fst ab in
+          let b = snd ab in
+            if x < (fst l)
+            then ((fst l, a), b)
+            else (a, (fst l, b))
+            end
+          end
+        end
+      end
+    end
+  end
+in
+
+let quicksort l =
+  if l = ()
+  then ()
+  else
+    let p = partition (fst l) (snd l) in
+      append (quicksort (fst p)) ((fst l), (quicksort (snd p)))
+    end
+  end
+in
+
+let i = ref 0 in
+  while !i < 2000 do
+    begin
+      quicksort (gen 200);
+      i := (!i + 1)
+    end
+  end
+end
+
+end
+end
+end
+end
+end

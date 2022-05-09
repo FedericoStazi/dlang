@@ -1,0 +1,3 @@
+case (fun x -> (inr 0) end) of
+  inl x -> x | inr x -> x
+end

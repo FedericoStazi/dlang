@@ -1,0 +1,20 @@
+# Build folders
+_build/
+build/
+
+# Executables
+*.byte
+*.out
+*.native
+dlang_vm/dlang_vm
+dlang_c/dlang_c
+/out/
+
+# Configuration files
+.vscode
+*.cfg
+
+# RPython outputs
+meta_dlang_vm
+meta_dlang_vm-c
+meta_dlang_vm.pyc

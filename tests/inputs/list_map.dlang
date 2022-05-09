@@ -1,0 +1,26 @@
+(* Basic list functions *)
+let empty = () in
+let head l = fst l in
+let tail l = snd l in
+let cons x = fun l -> (x, l) end in
+
+let map f =
+  fun l ->
+    if l = ()
+      then ()
+      else cons (f (fst l)) (map f (snd l))
+    end
+  end
+in
+
+let l =
+  cons 1 (cons 2 (cons 3 empty))
+in
+  map (fun x -> x * 2 end) l
+end
+
+end
+end
+end
+end
+end

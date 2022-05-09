@@ -1,0 +1,7 @@
+(* Runtime error. With no type checks, the result is 222, *)
+(* because y is interpreted as a pointer to x. *)
+let x = ref 111 in
+  let y = 0 in
+    !x + !y
+  end
+end

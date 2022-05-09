@@ -1,0 +1,3 @@
+case 0 of
+  inl x -> x | inr x -> x
+end

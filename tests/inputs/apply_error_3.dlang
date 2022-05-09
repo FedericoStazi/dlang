@@ -1,0 +1,5 @@
+let
+  f = ref (fun x -> x end)
+in
+  (!f 0) !f
+end

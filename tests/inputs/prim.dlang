@@ -1,0 +1,28 @@
+
+let primes n =
+  let p = ref 2 in
+    let cnt = ref 0 in
+      begin
+        while !p < n do
+          let q = ref 2 in
+            let div = ref false in
+              begin
+                while (!q < !p) && ~!div do
+                  begin
+                    div := (!div || ((!q * (!p / !q)) = !p));
+                    q := (!q + 1)
+                  end
+                end;
+                cnt := (!cnt + (if ~!div then 1 else 0 end));
+                p := (!p + 1)
+              end
+            end
+          end
+        end;
+        !cnt
+      end
+    end
+  end
+in
+  primes 40000
+end

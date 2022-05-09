@@ -1,0 +1,7 @@
+let
+  f = ref (fun x -> x end)
+in
+  while true do
+    f := !f 0
+  end
+end

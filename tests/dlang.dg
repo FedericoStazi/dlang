@@ -1,0 +1,59 @@
+%const% VARIANCE_MAX := 1
+
+%section% := value
+
+INT :=
+    +common:digit+
+	+common:byte_int+
+	+common:short_int+
+    %range%(0-2147483647)
+
+simple_expr :=
+    ()
+    +INT+
+%%% ?
+    XREF
+    true
+    false
+    ( +expr+ )
+    ( +expr+ , +expr+ )
+    ~ +simple_expr+
+    ! +simple_expr+
+    ref +simple_expr+
+
+%%% Placeholders are used for variables to avoid variables out of scope,
+%%% test.py substitutes them with variables always in scope
+
+expr :=
+    +simple_expr+
+    +expr+ +simple_expr+
+    - +simple_expr+
+    +expr+ + +expr+
+    +expr+ - +expr+
+    +expr+ * +expr+
+    +expr+ / +expr+
+    +expr+ < +expr+
+    +expr+ = +expr+
+    +expr+ && +expr+
+    +expr+ || +expr+
+    +expr+ := +expr+
+    begin +exprlist+ end
+    if +expr+ then +expr+ else +expr+ end
+    while +expr+ do +expr+ end
+    fst +expr+
+    snd +expr+
+    fun XDEF -> ENTER_SCOPE +expr+ EXIT_SCOPE end
+    let XDEF = +expr+ in ENTER_SCOPE +expr+ EXIT_SCOPE end
+    let XDEF XDEF = ENTER_SCOPE ENTER_SCOPE +expr+ SWAP_SCOPE EXIT_SCOPE in +expr+ EXIT_SCOPE end
+    inl +expr+
+    inr +expr+
+    case +expr+ of inl XDEF -> ENTER_SCOPE +expr+ EXIT_SCOPE | inr XDEF -> ENTER_SCOPE +expr+ EXIT_SCOPE end
+
+exprlist :=
+    +expr+
+    +expr+ ; +exprlist+
+
+%section% := variance
+
+main :=
+    let x0 = () in ( +expr+ ) end

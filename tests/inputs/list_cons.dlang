@@ -1,0 +1,12 @@
+(* Basic list functions *)
+let empty = () in
+let head l = fst l in
+let tail l = snd l in
+let cons x = fun l -> (x, l) end in
+
+cons 1 (cons 2 (cons 3 empty))
+
+end
+end
+end
+end
